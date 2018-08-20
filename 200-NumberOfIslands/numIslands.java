@@ -19,9 +19,9 @@ class Solution {
         return count;   
     }
     
-    // private function that serves the public function
+    // private function that recursively does DFS to reach the edge of one island and update the grid
     private void DFSMarking(char[][] grid, int row, int col) {
-        // return if the search hits any of the edges or an elem which is (marked as) water
+        // return without updating the grid if the search hits any of the edges or an elem which is (marked as) water
         if (row < 0 || col < 0 || row >= rowNum || col >= colNum || grid[row][col] == '0') 
             return;
         grid[row][col] = '0';    // mark the land as water because it's been counted
@@ -31,3 +31,4 @@ class Solution {
         DFSMarking(grid, row, col + 1);
     }
 }
+
