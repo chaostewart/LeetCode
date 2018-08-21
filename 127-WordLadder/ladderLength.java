@@ -40,8 +40,8 @@ class Solution {
                 }
             }
             beginSet = newSet;  // newSet is a new level of nodes in the bi-directional search tree
-            ans++; // path length increase by one 
+            ans++; // path length increased by one 
         }
-        return 0; // this happens only when while loop conditions cannot be met, meaming two ends will never meet
+        return 0; // this happens only when while loop conditions cannot be met anymore, meaning two ends will never meet
     }
 }
