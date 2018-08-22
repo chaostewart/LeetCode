@@ -6,7 +6,7 @@ class Solution {
         // Map<char, char's last index in string>
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();       
         int res = 0;
-        //create two pointers, i moves along the string, j points at the begining of a substring
+        //create two pointers, i moves along the string, j points at the begining of the next substring without repeating char
         // both pointers move towards the same direction
         for (int i = 0, j = 0; i < s.length(); i++) { 
             if (map.containsKey(s.charAt(i))) {
