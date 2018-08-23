@@ -1,9 +1,9 @@
 class RandomizedSet {
-    List<Integer> nums;               // declare private variables
-    Map<Integer, Integer> map;
-    java.util.Random rand;  
-    /** Initialize your data structure here. */
+    private List<Integer> nums;               // declare private variables
+    private Map<Integer, Integer> map;
+    private java.util.Random rand;  
     
+    /** Initialize your data structure here. */ 
     public RandomizedSet() {
         nums = new ArrayList<>();
         map = new HashMap<>();       //  Map<nums.get(i), i>  ===>> <value, index>
