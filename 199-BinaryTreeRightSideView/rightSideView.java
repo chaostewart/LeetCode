@@ -17,10 +17,10 @@ class Solution {
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
             for (int i = 0; i < levelSize; i++) {
-                if (i == levelSize - 1) ans.add(queue.peek().val);   // get the value of the rightmost node at each level
-                if (queue.peek().left != null) queue.offer(queue.peek().left);
-                if (queue.peek().right != null) queue.offer(queue.peek().right);
-                queue.poll();
+                TreeNode node = queue.poll();
+                if (i == levelSize - 1) ans.add(node.val);   // get the value of the rightmost node at each level
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);       
             }
         }
         return ans;
