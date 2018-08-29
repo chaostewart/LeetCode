@@ -1,7 +1,8 @@
 public class Codec {
-    Map<String, String> longIsKey = new HashMap<>();  // this hashmap is for checking if a longUrl has been encoded before
-    Map<String, String> tinyIsKey = new HashMap<>();  // map <tinyUrl, longUrl>
-    static String BASE_HOST = "https://leetcode.com/";
+    private Map<String, String> longIsKey = new HashMap<>();  // this hashmap is for checking if a longUrl has been encoded before
+    private Map<String, String> tinyIsKey = new HashMap<>();  // map <tinyUrl, longUrl>
+    private static String BASE_HOST = "https://leetcode.com/";
+    
     // Encodes a URL to a shortened URL.
     public String encode(String longUrl) {
         if (longIsKey.containsKey(longUrl)) return BASE_HOST + longIsKey.get(longUrl);
@@ -9,9 +10,8 @@ public class Codec {
         String tiny = null;
         do {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 6; i++)
                 sb.append(charSet.charAt((int) Math.random() * charSet.length()));   // random() generate a double (0, 1)
-            }
             tiny = sb.toString();
         } while (tinyIsKey.containsKey(tiny));   // keep generating new tiny url if collision happens
         longIsKey.put(longUrl, tiny);
