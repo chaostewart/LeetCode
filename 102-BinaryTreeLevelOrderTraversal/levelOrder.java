@@ -17,9 +17,10 @@ class Solution {
             int levelSize = queue.size();    // levelSize is the number of nodes at this tree level
             List<Integer> sublist = new LinkedList<>();     // store nodes' values at this tree level
             for (int i = 0; i < levelSize; i++) {
-                if (queue.peek().left != null) queue.offer(queue.peek().left);     // if their children exit, enqueue
-                if (queue.peek().right != null) queue.offer(queue.peek().right);
-                sublist.add(queue.poll().val);   // deque the nodes at this level and store their values
+                TreeNode node = queue.poll();
+                if (node.left != null) queue.offer(node.left);     // if their children exit, enqueue
+                if (node.right != null) queue.offer(node.right);
+                sublist.add(node.val);   // deque the nodes at this level and store their values
             }
             res.add(sublist);
         }
