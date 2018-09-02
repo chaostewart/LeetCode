@@ -11,7 +11,7 @@ class Solution {
         // if no digit after whitespace pr sign, reurn 0
         // if it's a digit, adding up the number
         while (i < str.length() && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
-            // Integer.MAX_VALUE = 2147483647
+            // Integer.MAX_VALUE = 2147483647, MIN_VALUE = -2147483648
             // base > 214748364 OR base == 214748364 and the next digit is 8 or 9
             if (base > Integer.MAX_VALUE/10 || (base == Integer.MAX_VALUE/10 && str.charAt(i) - '0' > Integer.MAX_VALUE%10))  
                 return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;   // overflow case
