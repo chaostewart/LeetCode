@@ -3,13 +3,13 @@ class Solution {
         if (s.isEmpty()) return -1;
         // simple hash table
         int[] freq = new int[26]; 
-        for (int i = 0; i < s.length(); i++) {
-            freq[s.charAt(i) - 'a']++;
-        }
-        for (int j = 0; j < s.length(); j++) {
+        for (char c: s.toCharArray()) 
+            freq[c - 'a']++;
+        
+        for (int j = 0; j < s.length(); j++) 
             if (freq[s.charAt(j) - 'a'] == 1)
                 return j;
-        }
+        
         return -1;
     }
 }
