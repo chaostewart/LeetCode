@@ -1,0 +1,21 @@
+class Solution {
+    public List<List<Integer>> (int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        // note: sorting the input array would slow it down
+        backtrack(res, new ArrayList<>(), candidates, target, 0);
+        return res;
+    }
+
+    private void backtrack(List<List<Integer>> res, List<Integer> sublist, int [] candidates, int remain, int start){
+        if (remain < 0) return;  // if remaining target < 0, this sublist is not a solution
+        else if (remain == 0) res.add(new ArrayList<>(sublist));
+        else {   // if remaining target > 0, keep trying
+            for(int i = start; i < candidates.length; i++) {
+                sublist.add(candidates[i]);   // try the start entry (again), 
+                backtrack(res, sublist, candidates, remain - candidates[i], i); // not i + 1 because we can reuse same elements
+                sublist.remove(sublist.size() - 1);   // used up the ith entry, remove it, move on to the (i+1)th entry
+            }
+        }
+    }
+
+}
