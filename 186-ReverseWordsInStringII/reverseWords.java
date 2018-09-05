@@ -1,3 +1,9 @@
+/*
+Time complextiy is O(n). Here's the break down:
+1. reverse the whole string, this is n steps.
+2. advance right pointer to find end of word, the right pointer just advances through whole string and never backtracks, so this is n iterations.
+3. reverse the word found, if word is length m, this is m steps, but consider all words together will be n, so this is also n steps total for all words.
+*/
 class Solution {
     public void reverseWords(char[] str) {
         reverseWords(str, 0, str.length - 1);   // reverse the whole string first
