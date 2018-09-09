@@ -33,8 +33,8 @@ public class Solution {
 public class Solution {   
     public boolean hasCycle(ListNode head) {
         if (head == null) return false;  // don't forget the special case
-        ListNode walker = head;  // create two pointers, walker and runner. walker moves step by step 
-        ListNode runner = head; // whereas runner moves by two steps
+        // create two pointers, walker and runner. walker moves step by step whereas runner moves two steps at a time
+        ListNode walker = head, runner = head; 
         while(runner.next != null && runner.next.next != null) {   // if runner is not the tail, stay in the loop
             walker = walker.next;
             runner = runner.next.next;
