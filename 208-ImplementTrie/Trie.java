@@ -1,25 +1,26 @@
-class TrieNode {
-    public int val;
-    public boolean isWord;
-    public TrieNode[] children = new TrieNode[26];
-    public TrieNode() {}
-    TrieNode(char c) {
-        TrieNode node = new TrieNode();
-        node.val = c;
-    }
-}
-
-
 class Trie {
+    private class TrieNode {
+        int val;
+        boolean isWord;
+        TrieNode[] children;
+        TrieNode(char c) {
+            this.val = c;
+            children = new TrieNode[26];
+        }
+        TrieNode() {
+            this(' ');
+        }
+    }
+    
     private TrieNode root;
     /** Initialize your data structure here. */
     // this is a standard/typical approach for building out a Trie with its root having an empty character.
     public Trie() {
-        root = new TrieNode(' ');
+        root = new TrieNode();
     }
     
     /** Inserts a word into the trie. */
-    /* Loop through each character in the word being inserted check if the character is a child node of the current TrieNode i.e. check if the array has a populated value in the index of this character.
+    /* Loop through each character in the word being inserted check if the character is a child node of the current TrieNode i.e.       check if the array has a populated value in the index of this character.
     */
     public void insert(String word) {
         TrieNode node = root;
