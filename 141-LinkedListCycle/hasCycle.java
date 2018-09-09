@@ -17,9 +17,9 @@ public class Solution {
         Set<ListNode> seenNode = new HashSet<>();
         ListNode curr = head;
         while (curr != null) {   // pointer curr hasn't reached the tail yet
-            if (seenNode.contains(curr)) {     // if a node has been seen before
+            if (seenNode.contains(curr))    // if a node has been seen before
                 return true;
-            } else {
+            else {
                 seenNode.add(curr);   
                 curr = curr.next;
             }
@@ -38,9 +38,8 @@ public class Solution {
         while(runner.next != null && runner.next.next != null) {   // if runner is not the tail, stay in the loop
             walker = walker.next;
             runner = runner.next.next;
-            if (walker == runner) {   // whether it's an odd loop or even loop, these two pointers will always meet
-                return true;
-            }
+            if (walker == runner)    // whether it's an odd loop or even loop, these two pointers will always meet
+                return true;   
         }
         return false;
     }
