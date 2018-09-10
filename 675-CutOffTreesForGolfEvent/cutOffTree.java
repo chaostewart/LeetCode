@@ -7,10 +7,11 @@ The worst case time complexity could be O(m^2 * n^2) (m = number of rows, n = nu
 
 class Solution {
     static int[][] dir = {{0,1}, {0, -1}, {1, 0}, {-1, 0}};
-
+    private int m, n;
     public int cutOffTree(List<List<Integer>> forest) {
         //if (forest == null || forest.size() == 0) return 0;
-        int m = forest.size(), n = forest.get(0).size();
+        m = forest.size();
+        n = forest.get(0).size();
 
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> forest.get(a[0]).get(a[1]) - forest.get(b[0]).get(b[1]));
 
@@ -36,7 +37,6 @@ class Solution {
     }
 
     private int minStep(List<List<Integer>> forest, int[] start, int[] dest) {
-        int m = forest.size(), n = forest.get(0).size();
         int step = 0;
         
         Queue<int[]> queue = new LinkedList<>();
