@@ -1,6 +1,6 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-        LinkedList<String> res = new LinkedList<>();   
+        LinkedList<String> res = new LinkedList<>();   // used as a queue here
         if (digits.isEmpty()) return res;
         // save mapping in a string list
         String[] mapping = new String[]{"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};  
