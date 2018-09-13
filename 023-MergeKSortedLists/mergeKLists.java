@@ -6,6 +6,13 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+
+/*
+Time complexity : O(Nlog k) where k is the number of linked lists.
+We can merge two sorted linked list in O(n) time where n is the total number of nodes in two lists.
+Sum up the merge process and we can get: O(Nlog k) where N is the total number of nodes in k lists
+Space complexity : O(1)
+*/
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         /*
