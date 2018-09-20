@@ -6,7 +6,7 @@ class Solution {
         return res;
     }
     private void backtrack(List<List<Integer>> res, List<Integer> sublist, int[] nums, int start) {
-        res.add(new ArrayList(sublist));     // why pass sublit inside a new ArrayList?!  
+        res.add(new ArrayList(sublist));    // copy sublist then add to result, otherwise it will get updated in later loops
         for (int i = start; i < nums.length; i++) {
             sublist.add(nums[i]);
             backtrack(res, sublist, nums, i + 1);
