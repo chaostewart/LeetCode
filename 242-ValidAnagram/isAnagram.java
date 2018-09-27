@@ -10,15 +10,14 @@ class Solution {
         return Arrays.equals(schar, tchar);   // use Arrays.equals() method instead of looping it yourself
         */
         
-        // Sol2: Hash Table
-        int[] counter = new int[26];    // int array is intialized to default value 0. Space complexity: O(1)
+        // Sol2: Hash Table. Time: O(n), Space: O(1)
+        int[] counter = new int[26];    // int array is intialized to default size with default value 0.
         for (int i = 0; i < s.length(); i++) {
-            counter[s.charAt(i) - 'a']++;     // Time complexity: O(n)
+            counter[s.charAt(i) - 'a']++;  
             counter[t.charAt(i) - 'a']--;
         }
-        for (int j: counter) {
+        for (int j: counter)
             if (j != 0) return false;
-        }
         return true;
     }
 }
