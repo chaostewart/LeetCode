@@ -1,6 +1,6 @@
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-        if (matrix == null || matrix.length < 1 || matrix[0].length < 1) return false;
+        if (matrix.length == 0) return false;
         // This genius algo. starts the search from top right!!  Time complexity is O(m + n)
         // traversing a row in descending order rules out other possibilities of finding target in a row
         // starting the search of target from bottom left would work too
