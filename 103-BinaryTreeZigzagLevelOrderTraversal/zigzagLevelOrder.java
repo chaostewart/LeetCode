@@ -10,6 +10,28 @@
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList();
+        if (root == null) return res;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {       
+            int levelSize = q.size();
+            List<Integer> levelList = new ArrayList<>(levelSize);
+            while (levelSize > 0) {
+                TreeNode node = q.poll();
+                levelList.add(node.val);
+                if (node.left != null) q.add(node.left);
+                if (node.right != null) q.add(node.right);
+                levelSize--;
+            }
+            if (res.size() % 2 == 1)
+                Collections.reverse(levelList);
+            res.add(levelList);        
+        }
+        return res;
+    }
+    /* old version // with helper funtion and recursion
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList();
         DFStraverse(root, res, 0);
         return res;
     }
@@ -32,5 +54,6 @@ class Solution {
         
         DFStraverse(curr.left, res, level + 1);     // traverse from left to right
         DFStraverse(curr.right, res, level + 1);
+        */
     }
 }
