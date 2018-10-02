@@ -1,4 +1,28 @@
 class Solution {
+    // solved it using backtracking!! yay!
+    public List<String> letterCombinations(String digits) {  
+        List<String> res = new ArrayList<>();
+        if (digits.length() == 0) return res;
+        String[] letters = new String[] { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        backtrack(res, digits, new StringBuilder(), letters, 0);
+        return res;
+    }
+    
+    private void backtrack(List<String> res, String digits, StringBuilder sb, String[] letters, int start) {
+        if (start == digits.length()) {
+            res.add(sb.toString());
+            return;
+        }
+        int digit = Character.getNumericValue(digits.charAt(start));
+        char[] chs = letters[digit].toCharArray();
+        int len = sb.length();
+        for (int i = 0; i < chs.length; i++) {
+            sb.append(chs[i]);
+            backtrack(res, digits, sb, letters, start + 1);
+            sb.setLength(len);
+        }
+    }
+    /*
     public List<String> letterCombinations(String digits) {
         LinkedList<String> res = new LinkedList<>();   // used as a queue here
         if (digits.isEmpty()) return res;
@@ -14,5 +38,7 @@ class Solution {
             }
         }
         return res;
-    }
+       
+    } 
+    */
 }
