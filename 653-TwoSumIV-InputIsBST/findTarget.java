@@ -25,7 +25,7 @@ class Solution {
 
     // First store BST nodes' values in a sorted array using inorder traversal. 
     // Then, use two pointers, from the start and end of the array, respectively, 
-    // moving toward each other to find if there is a sum k.
+    // moving towards each other to find if there is a sum k.
     public boolean findTarget(TreeNode root, int k) {
         List<Integer> nums = new ArrayList<>();
         inorder(root, nums);
