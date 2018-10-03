@@ -1,6 +1,6 @@
 class Solution {
     public int firstUniqChar(String s) {
-        if (s.isEmpty()) return -1;
+        if (s.length() == 0) return -1;
         // simple hash table
         int[] freq = new int[26]; 
         for (char c: s.toCharArray()) 
