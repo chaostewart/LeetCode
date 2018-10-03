@@ -21,5 +21,21 @@ class Solution {
             }
         }    
         return res;
+        
+        /* // min heap gives a very slow solution
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int n : nums)
+            map.put(n, map.getOrDefault(n, 0) + 1);
+        PriorityQueue<Integer> heap = new PriorityQueue<>(map.size(), (a, b) -> (map.get(a)).compareTo(map.get(b)));
+        for (int i : map.keySet()) {
+            heap.add(i);
+            if (heap.size() > k)
+                heap.poll();
+        }
+        List<Integer> res = new ArrayList<>();
+        for (int j : heap) 
+            res.add(0, j);
+        return res;
+        */
     }
 }
