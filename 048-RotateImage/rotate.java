@@ -1,21 +1,21 @@
 class Solution {
     public void rotate(int[][] matrix) {
-        int len = matrix.length;
+        int n = matrix.length;
+        int upper = 0, lower = n - 1;
         // flip matrix about horizontal axis
-        int upper = 0, lower = len - 1;
         while (upper < lower) {
             int[] temp = matrix[upper];
             matrix[upper] = matrix[lower];
             matrix[lower] = temp;
-            upper++; lower--;
+            upper++;
+            lower--;
         }
         // flip matrix about "\" diagonal
-        for (int i = 0; i < len; i++) {
-            for (int j = i + 1; j < len; j++) {
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++) {
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[j][i];
                 matrix[j][i] = temp;
             }
-        }
     }
 }
