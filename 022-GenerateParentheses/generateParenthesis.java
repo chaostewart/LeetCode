@@ -24,23 +24,23 @@ class Solution {
     */
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
-        helper(res, new StringBuilder(), n, n);
+        backtrack(res, new StringBuilder(), 0, 0, n);
         return res;
     }
     
-    public void helper(List<String> res,StringBuilder sb,int open,int close) {
-        if (open == 0 && close == 0) {
+    private void backtrack(List<String> res, StringBuilder sb, int left, int right, int n) {
+        if (left == n && right == n) {
             res.add(sb.toString());
             return;
         }
-        if (open > 0) {
+        if (left < n) {
             sb.append("(");
-            helper(res, sb, open - 1, close);
+            backtrack(res, sb, left + 1, right, n);
             sb.deleteCharAt(sb.length() - 1);
         }
-        if (open < close) {
+        if (right < left) {
             sb.append(")");
-            helper(res, sb, open, close - 1);
+            backtrack(res, sb, left, right + 1, n);
             sb.deleteCharAt(sb.length() - 1);
         }
     }
