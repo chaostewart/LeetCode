@@ -7,6 +7,33 @@
  * };
  */
 public class Solution {
+    // BFS solution
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        if (node == null) return null;
+        // map a label to a clone node
+        Map<Integer, UndirectedGraphNode> map = new HashMap<>();
+        // put the first cloned node in map before while loop!
+        UndirectedGraphNode copy = new UndirectedGraphNode(node.label);
+        map.put(copy.label, copy);
+        // queue stores original node whose neighbors haven't been deep cloned yet
+        Queue<UndirectedGraphNode> queue = new LinkedList<>();
+        queue.add(node);
+        while(!queue.isEmpty()) {
+            UndirectedGraphNode curr = queue.poll();     
+            for (UndirectedGraphNode neighbor: curr.neighbors) {
+                // if this neighbor is new, make a copy and put in map, also add it to queue for later inspection
+                if (!map.containsKey(neighbor.label)) {
+                    map.put(neighbor.label, new UndirectedGraphNode(neighbor.label));  
+                    queue.add(neighbor);
+                } 
+                // linked cloned neighbors to cloned node
+                map.get(curr.label).neighbors.add(map.get(neighbor.label));
+            }
+        }
+        return copy;   
+    }
+    /*
+    // DFS solution
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
         HashMap<Integer, UndirectedGraphNode> map = new HashMap<>();
         return dfs(node, map);    
@@ -29,4 +56,5 @@ public class Solution {
         
         return clone;
     }
+    */
 }
