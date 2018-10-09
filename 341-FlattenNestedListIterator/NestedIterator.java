@@ -38,21 +38,22 @@ public class NestedIterator implements Iterator<Integer> {
     @Override
     public boolean hasNext() {
         while (!stack.empty()) {
-            // the top list iterator on stack is pointing to NULL after a list is traversed, pop it
+            // if the top list iterator on stack is pointing to NULL after a list is traversed, pop it
             if (!stack.peek().hasNext())
                 stack.pop();
             else {
-                // where x could be an integer, list or nestedList, the top iterator on stack has moved to the next!!
+                // x could be an integer or a list. the top iterator on stack has moved to the next position!!
                 NestedInteger x = stack.peek().next();
                 // x is an integer
                 if (x.isInteger())
                     // previous() returns the previous element in the list and moves the cursor position backwards.
                     // the following return line is a hack to combine stack.peek().previous() and return true.
                     return stack.peek().previous() == x;
-                // x is a nested list
+                // x is a list, push the list operator onto stack
                 stack.push(x.getList().listIterator());
             }
         }
+        // all NULL pointers have been popped out of stack
         return false;
     }
 }
