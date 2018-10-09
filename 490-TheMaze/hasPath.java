@@ -28,7 +28,7 @@ class Solution {
                 nr += dirs[0][i];
                 nc += dirs[1][i];
             }
-            // retreat by one step to stand on a empty cell
+            // retreat by one step to stand on an empty cell
             if (DFS(maze, new int[] {nr - dirs[0][i], nc - dirs[1][i]}, dest, visited, dirs))
                 return true;
         }
