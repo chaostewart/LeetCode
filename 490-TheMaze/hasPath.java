@@ -7,39 +7,34 @@ class Solution {
     */
     public boolean hasPath(int[][] maze, int[] start, int[] destination) {
         boolean[][] visited = new boolean[maze.length][maze[0].length];
-        return dfs(maze, start, destination, visited);
+        int[][] dirs = {{1, 0, -1, 0}, {0, 1, 0, -1}};
+        return DFS(maze, start, destination, visited, dirs);
     }
     
-    private boolean dfs(int[][] maze, int[] start, int[] destination, boolean[][] visited) {
-        if (visited[start[0]][start[1]])
+    private boolean DFS (int[][] maze, int[] start, int[] dest, boolean[][] visited, int[][] dirs) {
+        // cell has been visited
+        if (visited[start[0]][start[1]] == true)
             return false;
-        if (destination[0] == start[0] && destination[1] == start[1])
+        // destination has been reached
+        if (start[0] == dest[0] && start[1] == dest[1])
             return true;
+        // mark cell as visited
         visited[start[0]][start[1]] = true;
-        int u = start[0] - 1, d = start[0] + 1, l = start[1] - 1, r = start[1] + 1;
-        // up, down, left, righta
-        while (u >= 0 && maze[u][start[1]] == 0)
-            u--;
-        if (dfs(maze, new int[] {u + 1, start[1]}, destination, visited))
-            return true;
-        
-        while (d < maze.length && maze[d][start[1]] == 0)
-            d++;
-        if (dfs(maze, new int[] {d - 1, start[1]}, destination, visited))
-            return true;
-        
-        while (l >= 0 && maze[start[0]][l] == 0)
-            l--;
-        if (dfs(maze, new int[] { start[0], l + 1}, destination, visited))
-            return true;
-        
-        while (r < maze[0].length && maze[start[0]][r] == 0)
-            r++;
-        if (dfs(maze, new int[] { start[0], r - 1}, destination, visited))
-            return true;
-        
+        // DFS in 4 directions
+        for (int i = 0; i < dirs[0].length; i++) {
+            int nr = start[0], nc = start[1];
+            // keep moving towards one direction and hitting wall
+            while (nr >= 0 && nr < maze.length && nc >= 0 && nc < maze[0].length && maze[nr][nc] == 0) {
+                nr += dirs[0][i];
+                nc += dirs[1][i];
+            }
+            // retreat by one step to stand on a empty cell
+            if (DFS(maze, new int[] {nr - dirs[0][i], nc - dirs[1][i]}, dest, visited, dirs))
+                return true;
+        }
         return false;
-    }
+     }
+    
 
     /*
     sol 2: BFS approach, slower than DFS
