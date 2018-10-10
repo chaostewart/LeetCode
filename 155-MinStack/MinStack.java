@@ -1,3 +1,37 @@
+// sol 1: faster. top element on stack is an array store the top value and min value so far
+class MinStack {
+    private Stack<int[]> stack;
+    
+    /** initialize your data structure here. */
+    public MinStack() {
+        stack = new Stack<>();
+    }
+    
+    public void push(int x) {
+        if (stack.isEmpty())
+            stack.push(new int[] {x, x});
+        else {
+            int[] top = stack.peek();
+            stack.push(new int[] {x, Math.min(x, top[1])});
+        }      
+    }
+    
+    public void pop() {
+        stack.pop();
+    }
+    
+    public int top() {
+        int[] top = stack.peek();
+        return top[0];
+    }
+    
+    public int getMin() {
+        int[] top = stack.peek();
+        return top[1];
+    }
+}
+// sol 2: create a class node that stores the current node value and min value so far, without using stack
+
 class MinStack {
     
     private class Node {
