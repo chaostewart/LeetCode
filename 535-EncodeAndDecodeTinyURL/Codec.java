@@ -1,5 +1,7 @@
 public class Codec {
+    // encoding map
     private Map<String, String> longIsKey = new HashMap<>();  // this hashmap is for checking if a longUrl has been encoded before
+    // decoding map
     private Map<String, String> tinyIsKey = new HashMap<>();  // map <tinyUrl, longUrl>
     private static String BASE_HOST = "https://leetcode.com/";
     
