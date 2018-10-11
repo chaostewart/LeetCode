@@ -1,14 +1,10 @@
 class Trie {
     private class TrieNode {
-        int val;
-        boolean isWord;
-        TrieNode[] children;
-        TrieNode(char c) {
-            this.val = c;
-            children = new TrieNode[26];
-        }
+        private TrieNode[] children;
+        private boolean isWord;
         TrieNode() {
-            this(' ');
+            children = new TrieNode[26];
+            isWord = false;
         }
     }
     
@@ -23,36 +19,34 @@ class Trie {
     /* Loop through each character in the word being inserted check if the character is a child node of the current TrieNode i.e.       check if the array has a populated value in the index of this character.
     */
     public void insert(String word) {
-        TrieNode node = root;
+        if (word.length() == 0) return;
+        TrieNode curr = root;
         for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            if (node.children[c - 'a'] == null)
-                node.children[c - 'a'] = new TrieNode(c);
-            node = node.children[c - 'a'];
+            if (curr.children[word.charAt(i) - 'a'] == null)
+                curr.children[word.charAt(i) - 'a'] = new TrieNode();
+            curr = curr.children[word.charAt(i) - 'a'];
         }
-        node.isWord = true;
+        curr.isWord = true;
     }
     
     /** Returns if the word is in the trie. */
     public boolean search(String word) {
-        TrieNode node = root;
+        TrieNode curr = root;
         for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            if (node.children[c - 'a'] == null)
+            if (curr.children[word.charAt(i) - 'a'] == null)
                 return false;
-            node = node.children[c - 'a'];
+            curr = curr.children[word.charAt(i) - 'a'];
         }
-        return node.isWord;
+        return curr.isWord;
     }
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
-        TrieNode node = root;
+        TrieNode curr = root;
         for (int i = 0; i < prefix.length(); i++) {
-            char c = prefix.charAt(i);
-            if (node.children[c - 'a'] == null)
+            if (curr.children[prefix.charAt(i) - 'a'] == null) 
                 return false;
-            node = node.children[c - 'a'];
+            curr = curr.children[prefix.charAt(i) - 'a'];
         }
         return true;
     }
