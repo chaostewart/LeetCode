@@ -20,10 +20,11 @@ class Solution {
         curr = root;
         for (int i = 0; i < k && curr != null; i++, r--) {    
             ans[i] = curr;
-            for (int j = 0; j < n + (r > 0 ? 1 : 0); j++) { // add n+1 or n nodes to each part, r > 0 means still remainder left
-                prev = curr;
-                curr = curr.next;
-            }
+            // move along the list to add n+1 or n nodes to each part, r > 0 means still remainder left
+            for (int j = 0; j < n - 1 + (r > 0 ? 1 : 0); j++) 
+                curr = curr.next;    
+            prev = curr;
+            curr = curr.next;
             prev.next = null;
         }
         return ans;
