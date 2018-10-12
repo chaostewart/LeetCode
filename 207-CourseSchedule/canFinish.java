@@ -20,10 +20,9 @@ class Solution {
             int curr = queue.poll();
             if (map.containsKey(curr)) {
                 edgeCount += map.get(curr).size();     // add num of outgoing edges to edgeCount 
-                for (int ready: map.get(curr)) {
+                for (int ready: map.get(curr))
                     if(--numPrereq[ready] == 0)
                         queue.offer(ready);
-                }
             }
         }
         
