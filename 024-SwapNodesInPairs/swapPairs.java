@@ -6,7 +6,16 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-
+// recursive solution
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode newHead = head.next, temp = newHead.next;
+        newHead.next = head;
+        head.next = swapPairs(temp);
+        return newHead;
+    }
+}
 // time: O(n), space: O(1)
 class Solution {
     public ListNode swapPairs(ListNode head) {
