@@ -6,7 +6,7 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-// recursive solution
+// recursive solution, space: O(n)
 class Solution {
     public ListNode swapPairs(ListNode head) {
         if (head == null || head.next == null) return head;
