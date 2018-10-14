@@ -8,7 +8,7 @@ class Solution {
         */
         
         // Power of 2 means only one bit of n is '1', e.g. 2 = 01, 4 = 10, 8 = 100, etc.
-        // the trick is using bitwise AND '&', e.g 1001 & 0101 gives 0001
+        // the trick is using bitwise AND '&', e.g 1000 & 0100 gives 0000, 1010 & 1101 gives 1000
         return (n > 0) && (n & (n - 1)) == 0;
         
     }
