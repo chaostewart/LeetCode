@@ -11,11 +11,12 @@ class Solution {
         
         // https://leetcode.com/problems/permutation-sequence/discuss/22507/%22Explain-like-I'm-five%22-Java-Solution-in-O(n)
         StringBuilder sb = new StringBuilder();
-        for (int i = 0, j = k - 1; i < n; i++) {
+        int r = k - 1;
+        for (int i = 0; i < n; i++) {
             fact /= (n - i);
-            int index = j / fact;
+            int index = r / fact;
             sb.append(nums.remove(index));
-            j -= index * fact;
+            r -= index * fact;
         }
         return sb.toString();
     }
