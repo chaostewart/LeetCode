@@ -13,11 +13,11 @@ class Solution {
             runner = runner.next.next;  // runner moves by 2 nodes
             walker = walker.next;
         }
-        // if even # of nodes in list, runner now is pointing at null, walker is pointing at the head of the 2nd half of list
-        // if odd # of nodes in list, runner is pointing at the last node, walker is pointing at the middle node
+        // if even # of nodes in list, runner now is pointing to null, walker is pointing to the head of the 2nd half of list
+        // if odd # of nodes in list, runner is pointing to the last node, walker is pointing to the middle node
         // you'll see the coneniece of making the 2nd half shorter for the odd # case
         if (runner != null) {
-            walker = walker.next;   // walker is always the head of the 2nd half
+            walker = walker.next;   // walker is always pointing to the head of the 2nd/shorter half
         }
         walker = reverseList(walker);
         runner = head;  // reassign head to runner, now runner will traverse the 1st half of the list slowly
