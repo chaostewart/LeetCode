@@ -6,6 +6,8 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+
+// Time: O(n), Space: O(1)
 class Solution {
     public boolean isPalindrome(ListNode head) {
         ListNode walker = head, runner = head;
