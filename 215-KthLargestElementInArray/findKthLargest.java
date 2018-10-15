@@ -1,4 +1,8 @@
-// Use quick select algorithm, pivot around k
+/** Use quick select algorithm, pivot around k
+    Worst-case performance: О(n^2)
+    Best-case performance: О(n)
+    Average performance: O(n)
+*/
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         if (nums.length == 0) return -1;
