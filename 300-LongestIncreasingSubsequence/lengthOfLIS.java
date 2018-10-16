@@ -22,7 +22,7 @@ public class Solution {
         return ans;
         */
 
-        // sol 2: faster dp
+        // sol 2: faster dp --- brilliant
         // Time: O(nlogn), space: O(n)
         // dp[i] stores smallest value of the the last elem among all LIS of length i+1
         // dp is an increasing array
