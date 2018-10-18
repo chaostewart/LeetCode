@@ -1,7 +1,6 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-        if (nums.length == 0) return res;
         backtrack(res, new ArrayList<>(), nums, 0);   // first subset is []
         return res;
     }
