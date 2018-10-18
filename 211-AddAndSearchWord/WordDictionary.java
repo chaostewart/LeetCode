@@ -29,21 +29,21 @@ class WordDictionary {
     
     /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     public boolean search(String word) {
-        return match(word, 0, root);
+        return search(root, word, 0);
     }
     
-    private boolean match(String word, int i, TrieNode node) {
-        if (i == word.length())
+    private boolean search(TrieNode node, String word, int index) {
+        if (index == word.length())
             return node.isWord;
-        char c = word.charAt(i);
+        char c = word.charAt(index);
         if (c == '.') {
-            for (int j = 0; j < node.children.length; j++) 
-                if (node.children[j] != null && match(word, i + 1, node.children[j])) 
+            for (TrieNode n: node.children) 
+                if (n != null && search(n, word, index + 1)) 
                     return true;
             return false;
         } else
-            return node.children[c - 'a'] != null && match(word, i + 1, node.children[c - 'a']);
-        
+            return node.children[c - 'a'] != null && search(node.children[c - 'a'], word, index + 1);
+ 
     }
 }
 
