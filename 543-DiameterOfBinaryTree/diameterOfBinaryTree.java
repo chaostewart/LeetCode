@@ -22,3 +22,18 @@ class Solution {
         return new int[] {best, height};
     }
 }
+
+// slow but clearer solution
+class Solution {
+    public int diameterOfBinaryTree(TreeNode root) {
+        if (root == null) return 0;
+        int curr = maxDepth(root.left) + maxDepth(root.right);
+        int left = diameterOfBinaryTree(root.left);
+        int right = diameterOfBinaryTree(root.right);
+        return Math.max(curr, Math.max(left, right));
+    }
+     public int maxDepth(TreeNode root) {
+        if(root == null) return 0;
+        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+     } 
+}
