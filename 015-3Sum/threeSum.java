@@ -1,3 +1,4 @@
+// Time: O(n^2)
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);   // sort the array first!
