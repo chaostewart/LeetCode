@@ -10,13 +10,13 @@ Space: O(n).
 
 class Solution {
     public String largestNumber(int[] nums) {
-        if(nums == null || nums.length == 0)
-            return "";
+        //if(nums == null || nums.length == 0)
+            //return "";
 
         // Convert int array to String array
         String[] strs = new String[nums.length];
         for(int i = 0; i < nums.length; i++)
-            strs[i] = String.valueOf(nums[i]);
+            strs[i] = String.valueOf(nums[i]);   // OR strs[i] = Integer.toString(nums[i]);
 
         Arrays.sort(strs, (s1, s2) -> (s2 + s1).compareTo(s1 + s2));
         // An extreme edge case where input is a bunch of 0s
