@@ -9,12 +9,17 @@
  */
 
 class Solution {
-    private int max_freq;   // records the max frequency of a sum
+    //private int max_freq;   // records the max frequency of a sum
     
     public int[] findFrequentTreeSum(TreeNode root) {
-        max_freq = 0;
         Map<Integer, Integer> map = new HashMap<>();    // map<subtree sum value, frequency>
         dfsGetSum(root, map);
+        // use the following iteration to get the max freq instead of defining a global variable max_freq
+        int max_freq = 0;
+        for (int i : map.values())
+            if (i > max_freq)
+                max_freq = i;
+        
         List<Integer> ans = new ArrayList<>();     // store sums with max frequency in a list
         
         for (int val: map.keySet())
@@ -32,7 +37,7 @@ class Solution {
         if (root == null) return 0;   // null returns 0
         int sum = dfsGetSum(root.left, map) + dfsGetSum(root.right, map) + root.val;    // left subtree + right subtree + root val
         map.put(sum, map.getOrDefault(sum, 0) + 1);    
-        max_freq = Math.max(max_freq, map.get(sum));
+        //max_freq = Math.max(max_freq, map.get(sum));
         return sum;
     }
 }
