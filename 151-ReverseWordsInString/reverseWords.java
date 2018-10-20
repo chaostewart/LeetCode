@@ -5,12 +5,11 @@ public class Solution {
         int len = cleanSpaces(chs);
         reverse(chs, 0, len - 1);
         int i = 0, j = 0;
-        for (j = 0; j <= len; j++) {
+        for (j = 0; j <= len; j++)
             if (j == len || chs[j] == ' ') {
                 reverse(chs, i, j - 1);
                 i = j + 1;
             }
-        }
         return new String(chs).substring(0, len);
     }
     
@@ -20,7 +19,7 @@ public class Solution {
         while (j < len) {
             // skip leading spaces
             while (j < len && chs[j] == ' ') j++;
-            // keep non spaces
+            // keep non spaces by copying/shifting them to the front 
             while (j < len && chs[j] != ' ')
                 chs[i++] = chs[j++];
             // skip inbetween & tailing spaces
