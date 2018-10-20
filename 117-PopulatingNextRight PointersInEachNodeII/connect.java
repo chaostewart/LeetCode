@@ -25,7 +25,7 @@ public class Solution {
                 root = root.next;  // root move to its sibling on its right, or hit the level end, NULL
             }
             root = levelHead.next;    // root moves to the front of the most recenlty linked level 
-            levelHead.next = null;    // level head pointer if cleared for the next level.
+            levelHead.next = null;    // level head pointer is cleared for the next level.
         }
     }
 }
