@@ -6,7 +6,7 @@ class Solution {
         int redPtr = 0, bluePtr = nums.length - 1, i = 0;
         while (i <= bluePtr) {
             if (nums[i] == 2) {
-                swap(nums, i, bluePtr);
+                swap(nums, i, bluePtr);  // after swap, i might point to 0 or 1, deal with it in the next loop
                 bluePtr--;
             }
             else if (nums[i] == 0) {
