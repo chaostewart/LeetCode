@@ -14,7 +14,7 @@ class Solution {
         
         char[] chars = new char[S.length()]; 
         
-        int index = 1;
+        int index = 1;    // as the array freqs is sorted in ascending order, index has to set to 1 first, then restart at 0
         for(int freq: freqs){
             int realFreq = freq/100;
             char c = (char)('a' + (freq % 100));
