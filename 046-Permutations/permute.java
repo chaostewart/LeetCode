@@ -9,6 +9,8 @@ class Solution {
         if (sublist.size() == nums.length)
             res.add(new ArrayList(sublist));
         else
+            // for loop always starts from 0 for each recursive call
+            // seems inefficient to check if a number has been added previously
             for (int i = 0; i < nums.length; i++) {
                 if (sublist.contains(nums[i]))
                     continue;
