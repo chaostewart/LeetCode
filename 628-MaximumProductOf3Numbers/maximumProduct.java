@@ -24,7 +24,7 @@ class Solution {
             
         return Math.max(p1, p2);
         */
-        // it's way faster not using heap
+        // it's way faster not using heap, Time: O(n), space: O(1)
         int max1 = Integer.MIN_VALUE, max2 = Integer.MIN_VALUE, max3 = Integer.MIN_VALUE;
         int min1 = Integer.MAX_VALUE, min2 = Integer.MAX_VALUE;
         for (int n : nums) {
