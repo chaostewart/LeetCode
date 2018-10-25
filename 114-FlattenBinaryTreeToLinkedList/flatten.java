@@ -12,14 +12,13 @@ class Solution {
         flatten(root, null);
     }
     // 'reversed' preorder traversal
-    private TreeNode flatten(TreeNode node, TreeNode prev) {
-        if (node == null)
-            return prev;
-        prev = flatten(node.right, prev);
-        prev = flatten(node.left, prev);
-        node.right = prev;
+    private TreeNode flatten(TreeNode node, TreeNode next) {
+        if (node == null) return next;
+        next = flatten(node.right, next);
+        next = flatten(node.left, next);
+        node.right = next;
         node.left = null;
-        prev = node;
-        return prev;
+        next = node;
+        return next;       
     }
 }
