@@ -1,9 +1,10 @@
 class Solution {
     public int numIslands(char[][] grid) {
-        if (grid == null || grid.length == 0) return 0;
-        int m = grid.length;
-        int n = grid[0].length;
+        if (grid.length == 0) return 0;
+        int m = grid.length, n = grid[0].length;
         int res = 0;
+        
+        // create boolean[][] visited = new boolean[m][n], if don't want to modify original grid.
         for (int i = 0; i < m; i++)
             for (int j = 0; j < n; j++) 
                 if (grid[i][j] == '1') {
