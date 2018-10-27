@@ -11,34 +11,25 @@
 // time complextity: O(nlogn)
 class Solution {
     public int minMeetingRooms(Interval[] intervals) {
-        if (intervals == null || intervals.length == 0)
+        if (intervals.length == 0)
             return 0;
 
         // Sort the intervals by start time
         Arrays.sort(intervals, (i1, i2) -> i1.start - i2.start);
 
         // Use a min heap to track the minimum end time of merged intervals
-        PriorityQueue<Interval> heap = new PriorityQueue<Interval>(intervals.length, (i1, i2) -> i1.end - i2.end);
-
-        // start with the first meeting, put it to a meeting room
-        heap.offer(intervals[0]);
-
-        for (int i = 1; i < intervals.length; i++) {
-            // get the meeting room that finishes earliest
-            Interval interval = heap.poll();
-
-            if (intervals[i].start >= interval.end)
-                // if the current meeting starts right after 
-                // there's no need for a new room, merge the interval
-                interval.end = intervals[i].end;
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.add(0);
+        for (Interval i: intervals) {
+            // insert i to previous room
+            if (i.start >= pq.peek()) {  
+                pq.poll();
+                pq.add(i.end);
+            }
+            // create a new room for i
             else
-                // otherwise, this meeting needs a new room
-                heap.offer(intervals[i]);
-
-            // don't forget to put the meeting room back
-            heap.offer(interval);
+                pq.add(i.end);
         }
-
-        return heap.size();
+        return pq.size(); 
     }
 }
