@@ -16,7 +16,7 @@ If neither are in that subtree, the result is null.
 
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || root == p || root == q)    // tree is empty OR reached a leaf's child OR found either p or q
+        if (root == null || root == p || root == q)    // reached a leaf's child OR found either p or q
             return root;
         TreeNode left = lowestCommonAncestor(root.left, p, q);     // recurse on the left subtree
         TreeNode right = lowestCommonAncestor(root.right, p, q);   // recurse on the right subtree
