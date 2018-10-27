@@ -29,13 +29,14 @@ class Solution {
     public boolean findTarget(TreeNode root, int k) {
         List<Integer> nums = new ArrayList<>();
         inorder(root, nums);
-        for (int left = 0, right = nums.size() - 1; left < right;) {
-            if (nums.get(left) + nums.get(right) == k)
+        int lo = 0, hi = nums.size() - 1;
+        while (lo < hi) {
+            if (nums.get(lo) + nums.get(hi) < k)
+                lo++;
+            else if (nums.get(lo) + nums.get(hi) > k)
+                hi--;
+            else
                 return true;
-            if (nums.get(left) + nums.get(right) < k)
-                left++;
-            else 
-                right--;
         }
         return false;
     }
