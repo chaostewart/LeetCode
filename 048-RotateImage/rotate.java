@@ -4,9 +4,11 @@ class Solution {
         int upper = 0, lower = n - 1;
         // flip matrix about horizontal axis
         while (upper < lower) {
-            int[] temp = matrix[upper];
-            matrix[upper] = matrix[lower];
-            matrix[lower] = temp;
+            for (int j = 0; j < n; j++) {
+                int tmp = matrix[upper][j];
+                matrix[upper][j] = matrix[lower][j];
+                matrix[lower][j] = tmp;
+            }
             upper++;
             lower--;
         }
