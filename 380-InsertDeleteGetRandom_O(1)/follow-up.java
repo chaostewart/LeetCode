@@ -8,7 +8,7 @@ The idea is to add a set to the hashMap to remember all the locations of a dupli
 class RandomizedSet {
     List<Integer> nums;               // declare private variables
     Map<Integer, Set<Integer>> map;
-    java.util.Random rand = new Random();    /// but rand needs to be initialized here
+    java.util.Random rand = new Random();   
     /** Initialize your data structure here. */
     public RandomizedSet() {
         nums = new ArrayList<>();
