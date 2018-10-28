@@ -18,7 +18,7 @@ class Solution {
         // when reaching leaves, return null value
         if (curr == null) return "null";
         // though postorder is performed, tree serial is saved in preorder
-        String serial = curr.val + "," + postOrder(curr.left, map, res) + "," + postOrder(curr.right, map, res);
+        String serial = postOrder(curr.left, map, res) + "," + postOrder(curr.right, map, res) + "," + curr.val;
         // save a new subtree or add count of an existing subtree
         map.put(serial, map.getOrDefault(serial, 0) + 1);
         // if this subtree has occurred and hasn't added to result before, save to result
