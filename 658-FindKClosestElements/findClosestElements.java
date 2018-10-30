@@ -14,7 +14,17 @@ class Solution {
                 lo = mid + 1; // arr[mid] is the one further away from x, eliminate range[lo, mid]
             else
                 hi = mid - 1; // arr[mid+k] is the one further away, all [mid, hi] will have simiar situation, elimiate them  
-        }     
+        }   
+        /* // the following code also works
+        int lo = 0, hi = arr.length - k;
+        while (lo < hi) {
+            int mid = lo + (hi - lo)/2;
+            if (Math.abs(arr[mid + k] - x) < Math.abs(arr[mid] - x)) 
+                lo = mid + 1;
+            else 
+                hi = mid;
+        }
+        */
         // return subarray
         List<Integer> res = new ArrayList(k);
         for (int i = 0; i < k; i++) 
