@@ -9,15 +9,14 @@
  */
 class Solution {
     // sol1: binary search, get subtree size, determine where answer resides
-    public int kthSmallest(TreeNode root, int k) {
-        int count = countNodes(root.left);
-        if (k <= count)                        // left subtree has >= k nodes, ans is in the left subtree
+    public int kthSmallest(TreeNode root, int k) {       
+        int left = countNodes(root.left);
+        if ( left >= k)             // left subtree has >= k nodes, ans is in the left subtree
             return kthSmallest(root.left, k);
-        else if (k > count + 1)                // ans is in the right subtree
-            return kthSmallest(root.right, k - (1 + count));    // 1 is counted as current node
-        
-        // k == count + 1, ans is the current root node
-        return root.val;
+        else if (left == k - 1)     // ans is the current root node
+            return root.val;
+        else                        // ans is in the right subtree
+            return kthSmallest(root.right, k - left - 1);
     }
     
     public int countNodes(TreeNode n) {
