@@ -24,7 +24,7 @@ class Solution {
         if (root == null)
             return null;
 
-        if (root.val <= p.val)                  
+        if (p.val >= root.val)                  
             return inorderSuccessor(root.right, p);
         else {                                 
             TreeNode left = inorderSuccessor(root.left, p);
