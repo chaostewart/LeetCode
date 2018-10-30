@@ -1,18 +1,16 @@
 class Solution {
     public String longestPalindrome(String s) {
-        if (s == null || s.length() == 0)
-            return s;
-        int start = 0, end = 0;
+        int start = 0, maxLen = 0;
         for (int i = 0; i < s.length(); i++) {
             int len1 = expandAroundCenter(s, i, i);   // when a palindrome mirrors around a center letter
             int len2 = expandAroundCenter(s, i, i + 1); // when a palindrome mirrors around a center space between two letters
             int len = Math.max(len1, len2);
-            if (len > end - start + 1) {
-                start = i - (len - 1) / 2;  // locating the start of the palindrome is tricky
-                end = i + len / 2;
+            if (len > maxLen) {
+                start = i - (len - 1)/2;
+                maxLen = len;
             }
         }
-        return s.substring(start, end + 1);
+        return s.substring(start, start + maxLen);
     }
     
     private int expandAroundCenter(String s, int left, int right) {
