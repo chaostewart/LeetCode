@@ -1,20 +1,16 @@
-// https://leetcode.com/problems/unique-binary-search-trees/discuss/31666/DP-Solution-in-6-lines-with-explanation.-F(i-n)-G(i-1)-*-G(n-i)
 class Solution {
     public int numTrees(int n) {
-        int[] G = new int[n+1];
-        G[0] = G[1] = 1;
-
-        for(int i = 2; i <= n; ++i) {
-            System.out.println("============================================");
-            System.out.println("i = " + i + ":");
-            for(int j = 1; j <= i; ++j) {
-                System.out.println("j = " + j + ":");
-                G[i] += G[j-1] * G[i-j];
-                System.out.println("G[j-1] * G[i-j] = G[" + (j-1) + "] * G[" + (i-j) +"] = " +  G[j-1] + " * " +  G[i-j] + " = "+ G[j-1] * G[i-j]);
-                System.out.println("G[i] = G[" + i +"] = " + G[i]);
-            }
-        }
+        int[] dp = new int[n+1];
+        // dp[i] stores the # of unique BST's that store values 1...i
+        dp[0] = dp[1] = 1;  // where tree is empty or has only one node, # of unique trees is one
         
-        return G[n];
+        for (int i = 2; i <= n; i++)
+            // j is a value in 1...i is chosen to be the root of a BST that stores values 1...i
+            for (int j = 1; j <= i; j++)
+                // dp[j-1] is the # of unique BST's that store values 1...j-1 as the left subtree of root j
+                // dp[i-j] is the # of unique BST's that store values j+1...i as the right subtree of root j
+                dp[i] += dp[j-1] * dp[i-j];
+        
+        return dp[n];
     }
 }
