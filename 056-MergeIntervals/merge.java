@@ -7,6 +7,33 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
+
+// a way faster solution
+class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        int n = intervals.size();
+        int[] starts = new int[n];
+        int[] ends = new int[n];
+        for(int i = 0; i < n; i++) {
+            starts[i] = intervals.get(i).start;
+            ends[i] = intervals.get(i).end;
+        }
+        
+        Arrays.sort(starts);
+        Arrays.sort(ends);
+        List<Interval> res = new ArrayList<>();
+        
+        int start = 0;
+        for(int j = 0; j < n; j++)
+            if (j == n - 1 || starts[j + 1] > ends[j]) {
+                res.add(new Interval(starts[start], ends[j]));
+                start = j + 1;
+            }
+    
+        return res;
+    }
+}
+
 class Solution {
     public List<Interval> merge(List<Interval> intervals) {
         if (intervals == null || intervals.size() == 0)
