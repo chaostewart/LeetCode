@@ -19,12 +19,11 @@ class Trie {
     /* Loop through each character in the word being inserted check if the character is a child node of the current TrieNode i.e.       check if the array has a populated value in the index of this character.
     */
     public void insert(String word) {
-        if (word.length() == 0) return;
         TrieNode curr = root;
-        for (int i = 0; i < word.length(); i++) {
-            if (curr.children[word.charAt(i) - 'a'] == null)
-                curr.children[word.charAt(i) - 'a'] = new TrieNode();
-            curr = curr.children[word.charAt(i) - 'a'];
+        for (char c : word.toCharArray()) {
+            if (curr.children[c-'a'] == null)
+                curr.children[c-'a'] = new TrieNode();
+            curr = curr.children[c-'a'];
         }
         curr.isWord = true;
     }
@@ -32,10 +31,10 @@ class Trie {
     /** Returns if the word is in the trie. */
     public boolean search(String word) {
         TrieNode curr = root;
-        for (int i = 0; i < word.length(); i++) {
-            if (curr.children[word.charAt(i) - 'a'] == null)
+        for (char c : word.toCharArray()) {
+            if (curr.children[c-'a'] == null)
                 return false;
-            curr = curr.children[word.charAt(i) - 'a'];
+            curr = curr.children[c-'a'];
         }
         return curr.isWord;
     }
@@ -43,10 +42,10 @@ class Trie {
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
         TrieNode curr = root;
-        for (int i = 0; i < prefix.length(); i++) {
-            if (curr.children[prefix.charAt(i) - 'a'] == null) 
+        for (char c : prefix.toCharArray()) {
+            if (curr.children[c-'a'] == null)
                 return false;
-            curr = curr.children[prefix.charAt(i) - 'a'];
+            curr = curr.children[c-'a'];
         }
         return true;
     }
