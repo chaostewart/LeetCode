@@ -7,6 +7,23 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+// clearer and faster
+class Solution {
+    public int diameterOfBinaryTree(TreeNode root) {
+        int[] res = new int[1];
+        getDepthOfTree(root, res);
+        return res[0];
+    }
+    
+    private int getDepthOfTree(TreeNode root, int[] res) {
+        if (root == null) return 0;
+        int l = getDepthOfTree(root.left, res);
+        int r = getDepthOfTree(root.right, res);
+        res[0] = Math.max(res[0], l + r);
+        return 1 + Math.max(l, r);
+    }
+}
+
 class Solution {
     public int diameterOfBinaryTree(TreeNode root) {
         return DFS(root)[0];
