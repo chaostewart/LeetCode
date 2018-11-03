@@ -26,18 +26,18 @@ class Solution {
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
             if (K == 0) {
-                for (int i = 0; i < levelSize; i++)
+                while (!queue.isEmpty())
                     res.add(queue.poll().val);
-            } else {
-                for (int i = 0; i < levelSize; i++) {
-                    TreeNode curr = queue.poll();
-                    for (TreeNode nb : graph.get(curr))   // get current node's parent and children
-                        if (!visited.contains(nb)) {
-                            queue.offer(nb);
-                            visited.add(nb);
-                        }
-                }
+                return res;
             }
+            while (levelSize-- > 0) {
+                TreeNode curr = queue.poll();
+                for (TreeNode nb : graph.get(curr))   // get current node's parent and children
+                    if (!visited.contains(nb)) {
+                        queue.offer(nb);
+                        visited.add(nb);
+                    }
+            }        
             K--;
         }
         return res;
@@ -45,9 +45,9 @@ class Solution {
     
     private void buildGraph(TreeNode node, TreeNode parent, Map<TreeNode, List<TreeNode>> graph) {
         if (node == null) return;           // does not map null with leaves
-        graph.put(node, new ArrayList<>());
+        graph.put(node, new ArrayList<>());  // must create list for each node
         if (parent != null) {               // does not map null with root node
-            graph.get(parent).add(node);
+            graph.get(parent).add(node);    // parent already exists in map
             graph.get(node).add(parent);
         }
         buildGraph(node.left, node, graph);
