@@ -3,9 +3,51 @@
     Best-case performance: О(n)
     Average performance: O(n)
 */
+// clearer quick select version
 class Solution {
     public int findKthLargest(int[] nums, int k) {
-        if (nums.length == 0) return -1;
+        int idx = quickSelect(nums, 0, nums.length - 1, nums.length - k + 1);
+        return nums[idx];
+    }
+
+      // return the index of the kth smallest number
+    int quickSelect(int[] nums, int lo, int hi, int k) {
+        // use quick sort's idea
+        // put nums that are <= pivot to the left
+        // put nums that are  > pivot to the right
+        int i = lo, j = hi, pivot = nums[hi];
+        while (i < j) {
+            if (nums[i] > pivot)
+                swap(nums, i, --j);
+            else
+                i++;
+        }
+        swap(nums, i, hi);
+
+        // count the nums that are <= pivot from lo
+        int m = i - lo;
+
+        // pivot is the one!
+        if (m == k)     
+            return i;
+        // pivot is too big, so it must be on the left
+        else if (m > k) 
+            return quickSelect(nums, lo, i - 1, k);
+        // pivot is too small, so it must be on the right
+        else            
+            return quickSelect(nums, i + 1, hi, k - m);
+    }
+    void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+}
+
+
+
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
         return quickSelect(nums, 0, nums.length - 1, nums.length - k);
     }
     
