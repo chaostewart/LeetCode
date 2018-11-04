@@ -7,29 +7,29 @@
 // e.g. 2, 3, 6, 5, 4, 1
 class Solution {
     public void nextPermutation(int[] nums) {
-        int i = nums.length - 2;
-        while (i >= 0 && nums[i + 1] <= nums[i]) 
-            i--;
+        int pivot = -1;
+        for (int i = nums.length - 2; i >= 0; i--) 
+            if (nums[i] < nums[i+1]) {
+                pivot = i;
+                break;
+            }
         
-        if (i >= 0) {
-            int j = nums.length - 1;
-            while (j > i && nums[j] <= nums[i]) 
-                j--;  
-            // i points to 3, j points to 4 --> 2, 4, 6, 5, 3, 1
-            swap(nums, i, j);
+        if (pivot == -1) {
+            reverse(nums, 0, nums.length - 1);
+            return;
         }
-        // else (i == -1), no next permutation is possible
-        // --> 2, 4, 1, 3, 5, 6
-        reverse(nums, i + 1);
+        
+        for (int i = nums.length - 1; i > pivot; i--) 
+            if (nums[i] > nums[pivot]) {
+                swap(nums, i, pivot);
+                reverse(nums, pivot + 1, nums.length - 1);
+                return;
+            } 
     }
 
-    private void reverse(int[] nums, int start) {
-        int i = start, j = nums.length - 1;
-        while (i < j) {
-            swap(nums, i, j);
-            i++;
-            j--;
-        }
+    private void reverse(int[] nums, int lo, int hi) {
+        while (lo < hi) 
+            swap(nums, lo++, hi--);
     }
 
     private void swap(int[] nums, int i, int j) {
