@@ -3,7 +3,7 @@ class Solution {
     public List<String> letterCombinations(String digits) {  
         List<String> res = new ArrayList<>();
         if (digits.length() == 0) return res;
-        String[] letters = new String[] { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        String[] letters = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         backtrack(res, digits, new StringBuilder(), letters, 0);
         return res;
     }
@@ -14,10 +14,9 @@ class Solution {
             return;
         }
         int digit = Character.getNumericValue(digits.charAt(start));
-        char[] chs = letters[digit].toCharArray();
         int len = sb.length();
-        for (int i = 0; i < chs.length; i++) {
-            sb.append(chs[i]);
+        for (char c : letters[digit].toCharArray()) {
+            sb.append(c);
             backtrack(res, digits, sb, letters, start + 1);
             sb.setLength(len);
         }
