@@ -13,7 +13,7 @@ class Solution {
     
     private boolean DFS (int[][] maze, int[] start, int[] dest, boolean[][] visited, int[][] dirs) {
         // cell has been visited
-        if (visited[start[0]][start[1]] == true)
+        if (visited[start[0]][start[1]])
             return false;
         // destination has been reached
         if (start[0] == dest[0] && start[1] == dest[1])
