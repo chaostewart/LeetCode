@@ -9,7 +9,7 @@ class Solution {
             int twoDigit = Integer.parseInt(s.substring(i - 2, i));
             if (oneDigit != 0)
                 dp[i] += dp[i - 1];
-            if (twoDigit >= 10 & twoDigit <= 26)
+            if (twoDigit >= 10 && twoDigit <= 26)
                 dp[i] += dp[i - 2];       
         }
         return dp[n];
