@@ -7,6 +7,28 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+// newer version, easier to follow
+class Solution {
+    public int longestConsecutive(TreeNode root) {
+        int[] res = new int[1];
+        longestConsecutive(root, res);
+        return res[0];
+    }
+    
+    private int longestConsecutive(TreeNode root, int[] res) {
+        if (root == null) return 0;
+        int ans = 1;
+        int left = longestConsecutive(root.left, res);
+        int right = longestConsecutive(root.right, res);
+        if (left != 0 && root.left.val == root.val + 1)
+            ans = Math.max(1+left, ans);
+        if (right != 0 && root.right.val == root.val + 1)
+            ans = Math.max(1+right, ans);
+        res[0] = Math.max(ans, res[0]);
+        return ans;
+    }
+}
+
 
 class Solution {
     public int longestConsecutive(TreeNode root) {
