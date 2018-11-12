@@ -14,7 +14,8 @@ class Solution {
         longestConsecutive(root, res);
         return res[0];
     }
-    
+    // private function returns the length of consecutive sequence starts from the input root node
+    // final answer is stored/updated in res[0]
     private int longestConsecutive(TreeNode root, int[] res) {
         if (root == null) return 0;
         int ans = 1;
