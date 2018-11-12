@@ -1,12 +1,14 @@
 class Solution {
     public String simplifyPath(String path) {
         Stack<String> stack = new Stack<>();
-        Set<String> skip = new HashSet<>(Arrays.asList("..", ".", ""));
         
         for (String dir : path.split("/")) {
-            if (dir.equals("..") && !stack.isEmpty()) 
-                stack.pop();
-            else if (!skip.contains(dir)) 
+            if (dir.equals(".."))
+                if (!stack.isEmpty())
+                    stack.pop();
+            else if (dir.equals(".") || dir.equals(""))
+                continue;
+            else
                 stack.push(dir);
         }
         
