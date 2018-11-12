@@ -14,7 +14,6 @@
 // Time: O(n), Space: O(1)
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if(headA == null || headB == null) return null;  // not needed, doesn't change run time
         ListNode a = headA, b = headB; 
         while (a != b) {
             // traverse both lists at most twice (if diff length)
