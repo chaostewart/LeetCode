@@ -2,8 +2,7 @@ class Solution {
     public int romanToInt(String s) {
         int res = 0;
         for (int i = s.length() - 1; i >= 0; i--) {
-            char c = s.charAt(i);
-            switch (c) {
+            switch (s.charAt(i)) {
                 case 'I':
                     res += (res >= 5 ? -1 : 1);
                     break;
