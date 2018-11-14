@@ -2,7 +2,7 @@
 // meaning that at most each element will be seen and operated twice (in the case of all 0s)
 class Solution {
     public void sortColors(int[] nums) {
-        if (nums.length == 0) return;
+        //if (nums.length == 0) return;
         int redPtr = 0, bluePtr = nums.length - 1, i = 0;
         while (i <= bluePtr) {
             if (nums[i] == 2) {
