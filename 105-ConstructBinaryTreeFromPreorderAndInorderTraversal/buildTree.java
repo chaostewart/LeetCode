@@ -13,19 +13,19 @@ class Solution {
         Map<Integer, Integer> inMap = new HashMap<>();
         for (int i = 0; i < inorder.length; i++)
             inMap.put(inorder[i], i);
-        return build(preorder, 0, inorder, 0, inorder.length - 1, inMap);
+        return build(preorder, 0, 0, inorder.length - 1, inMap);
     }
     
-    private TreeNode build(int[] preorder, int preStart, int[] inorder, int inStart, int inEnd, Map<Integer, Integer> inMap) {
+    private TreeNode build(int[] preorder, int preStart, int inStart, int inEnd, Map<Integer, Integer> inMap) {
         if (preStart > preorder.length - 1 || inStart > inEnd) 
             return null;
         TreeNode root = new TreeNode(preorder[preStart]);
         int rootIn = inMap.get(root.val);      // find the index of root in inorder array
         int leftNum = rootIn - inStart;        // leftNum is the number of nodes in the left subtree of root
         // build(preorder, root of left subtree, inorder, leftmost node in tree, rightmost node in left subtree, map)
-        root.left = build(preorder, preStart + 1, inorder, inStart, rootIn - 1, inMap);
+        root.left = build(preorder, preStart + 1, inStart, rootIn - 1, inMap);
         // build(preorder, root of right subtree, inorder, leftmost node in right subtree, rightmost node in tree, map)
-        root.right = build(preorder, preStart + 1 + leftNum, inorder, rootIn + 1, inEnd, inMap);
+        root.right = build(preorder, preStart + 1 + leftNum, rootIn + 1, inEnd, inMap);
         return root;
     }
 }
