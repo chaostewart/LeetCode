@@ -1,3 +1,53 @@
+// same idea, latest practice
+class Solution {
+    public int snakesAndLadders(int[][] board) {
+        int n = board.length;
+        int[] array = new int[n * n];
+        int idx = 0, delta = 1, j = -1;
+        for (int i = n-1; i >=0; i--) {
+            if (j == -1)
+                delta = 1;     
+            else if (j == n)
+                delta = -1;
+            j += delta;
+            while (j >=0 && j < n) {
+                array[idx] = board[i][j];
+                idx++;
+                j+= delta;
+            }     
+        }
+        //for (int i : array)
+            //System.out.println(i);
+        int res = 0;
+        Queue<Integer> queue = new LinkedList();
+        Set<Integer> visited = new HashSet();
+        queue.add(0);
+        visited.add(0);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size-- > 0) {
+                int curr = queue.poll();
+                if (curr == n*n - 1)
+                    return res;
+                for (int i = 1; i <= 6; i++) {
+                    int newIdx = curr + i;
+                    if (newIdx < n*n) {
+                        if (array[newIdx] != -1)
+                            newIdx = array[newIdx] - 1;
+                        if (!visited.contains(newIdx)) {
+                            visited.add(newIdx);
+                            // System.out.println(newIdx);
+                            queue.add(newIdx);
+                        }
+                    }
+                }
+            }
+            res++;
+        }
+        return -1;
+    }
+}
+
 class Solution {
     public int snakesAndLadders(int[][] board) {
         int n = board.length;
