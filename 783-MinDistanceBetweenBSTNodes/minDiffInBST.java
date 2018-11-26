@@ -21,8 +21,7 @@ class Solution {
             if (pre != null) 
                 ans = Math.min(ans, curr.val - pre.val); 
             pre = curr; 
-            curr = curr.right; 
-            
+            curr = curr.right;             
         }
         return ans;
     }
