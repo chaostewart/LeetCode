@@ -14,7 +14,7 @@ class Solution {
         
         // sol 2: use a heap of size k，  time complexity = O(nlogk)     
         PriorityQueue<String> heap = new PriorityQueue<>((w1, w2) -> map.get(w1).equals(map.get(w2)) ? w2.compareTo(w1) :
-                                                        map.get(w1) - map.get(w2));  // Note: comparator is reversed!
+                                               Integer.compare(map.get(w1), map.get(w2)));  // Note: comparator is reversed!
         
         for (String s: map.keySet()) {  // iterate through keys but not words again.
             heap.add(s);                // offer() == add() which is equivalent to push()
@@ -24,7 +24,7 @@ class Solution {
         
         List<String> res = new ArrayList<>();
         while(!heap.isEmpty())      
-            res.add(0, heap.poll())    // adding each word to the front of the list is faster than reversing the list later
+            res.add(0, heap.poll());    // adding each word to the front of the list is faster than reversing the list later
         /*
             res.add(heap.poll());  
         Collections.reverse(res);      // The head of queue is the least element w.r.t. the specified ordering.
