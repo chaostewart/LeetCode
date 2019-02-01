@@ -6,7 +6,7 @@ class Solution {
         for (int i = 1; i <= amount; i++) {
             for (int coin : coins) {
                 // value of amount is larger than coin value && previously value of (i - coin) had a solution
-                if (c <= i && dp[i-coin] != Integer.MAX_VALUE)
+                if (coin <= i && dp[i-coin] != Integer.MAX_VALUE)
                     dp[i] = Math.min(dp[i-coin] + 1, dp[i]);
             }
         }
