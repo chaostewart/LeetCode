@@ -8,7 +8,7 @@ class Solution {
             sign = str.charAt(i) == '-' ? -1 : 1;
             i++;
         }
-        // if no digit after whitespace pr sign, reurn 0
+        // if no digit after whitespace or sign, reurn 0
         // if it's a digit, adding up the number
         while (i < str.length() && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
             // Integer.MAX_VALUE = 2147483647, MIN_VALUE = -2147483648
