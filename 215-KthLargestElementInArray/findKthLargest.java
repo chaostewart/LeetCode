@@ -6,7 +6,7 @@
 // clearer quick select version
 class Solution {
     public int findKthLargest(int[] nums, int k) {
-        int idx = quickSelect(nums, 0, nums.length - 1, nums.length - k + 1);
+        int idx = quickSelect(nums, 0, nums.length - 1, nums.length - k);
         return nums[idx];
     }
 
@@ -15,14 +15,14 @@ class Solution {
         // use quick sort's idea
         // put nums that are <= pivot to the left
         // put nums that are  > pivot to the right
-        int i = lo, j = hi, pivot = nums[hi];
-        while (i < j) {
-            if (nums[i] > pivot)
-                swap(nums, i, --j);
+        int i = -1, j = 0, pivot = nums[hi];
+        while (j < hi) {
+            if (nums[j] <= pivot)
+                swap(nums, ++i, j++);
             else
-                i++;
+                j++;
         }
-        swap(nums, i, hi);
+        swap(nums, ++i, hi);
 
         // count the nums that are <= pivot from lo
         int m = i - lo;
@@ -35,7 +35,7 @@ class Solution {
             return quickSelect(nums, lo, i - 1, k);
         // pivot is too small, so it must be on the right
         else            
-            return quickSelect(nums, i + 1, hi, k - m);
+            return quickSelect(nums, i, hi, k - m);
     }
     void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
