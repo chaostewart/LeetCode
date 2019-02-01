@@ -3,13 +3,12 @@ class Solution {
         int[] dp = new int[amount + 1];     // dp[amount] stores the final answer
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
-        for (int i = 1; i <= amount; i++) {
-            for (int coin : coins) {
+        for (int coin : coins) 
+            for (int i = 1; i <= amount; i++) 
                 // value of amount is larger than coin value && previously value of (i - coin) had a solution
                 if (coin <= i && dp[i-coin] != Integer.MAX_VALUE)
                     dp[i] = Math.min(dp[i-coin] + 1, dp[i]);
-            }
-        }
+
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
         /*
         if (amount < 1) 
