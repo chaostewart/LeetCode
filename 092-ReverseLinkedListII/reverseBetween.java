@@ -10,24 +10,25 @@ class Solution {
     public ListNode reverseBetween(ListNode head, int m, int n) {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-        ListNode curr = dummy, prev = null;
-        
-        int count = 0;
+        ListNode curr = head, prev = dummy;
+        int count = 1;
         while (count < m) {
             prev = curr;
             curr = curr.next;
             count++;
         }
-
-        ListNode after = curr.next;
-        while (count < n) {
-            curr.next = after.next;
-            after.next = prev.next;
-            prev.next = after;
-            after = curr.next;
+        // during reversing, pointer prev and curr are fixed, pointing to node m-1 and node m, respectively, all the time
+        // whereas the pointer newPrev moves along the list
+        // the order of new list looks like 
+        // -> prev(old node m-1)->newPrev(old node n)->...->(old node m+2)->(old node m+1)->curr(old node m)->(node n+1)->...
+        ListNode newPrev = curr.next;
+        while(count < n) {
+            curr.next = newPrev.next;
+            newPrev.next = prev.next;
+            prev.next = newPrev;
+            newPrev = curr.next;
             count++;
         }
-
         return dummy.next;
     }
 }
