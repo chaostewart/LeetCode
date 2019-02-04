@@ -1,7 +1,7 @@
 /*
 the length of input array is n,
 average length of Strings in strs is k => compare 2 strings will take O(k).
-Sorting will take O(nlgn)
+Sorting will take O(nlogn)
 Appending to StringBuilder takes O(n).
 So total will be O(knlogn) + O(n) = O(knlogn).
 
