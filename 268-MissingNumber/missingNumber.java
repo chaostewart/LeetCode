@@ -22,3 +22,18 @@ class Solution {
         return sum;
     }
 }
+
+// Binary search. Time: O(nlogn). right pointer is initialized as n instead of n-1
+class Solution {
+    public int missingNumber(int[] nums) {
+        Arrays.sort(nums);
+        int left = 0, right = nums.length, mid;
+        while(left<right){
+            mid = (left + right)/2;
+            if(nums[mid]>mid) 
+                right = mid;
+            else left = mid+1;
+        }
+        return left;
+    }
+}
