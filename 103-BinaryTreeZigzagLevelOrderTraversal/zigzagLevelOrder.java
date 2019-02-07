@@ -29,6 +29,40 @@ class Solution {
         }
         return res;
     }
+    
+ // Or use TWO STACKS withort reversing the sublist
+public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+   List<List<Integer>> ans = new ArrayList<>();
+   if(root == null) return ans;
+   Stack<TreeNode> s1 = new Stack<>();
+   Stack<TreeNode> s2 = new Stack<>();
+   s1.push(root);
+   TreeNode curr = null;
+   while(!s1.isEmpty() || !s2.isEmpty()) {
+        List<Integer> sublist = new ArrayList<>();
+        while(!s1.isEmpty()) {
+            curr = s1.pop();
+            sublist.add(curr.val);
+            if(curr.left != null)
+                s2.push(curr.left);
+            if(curr.right != null) 
+                s2.push(curr.right);
+        }
+        ans.add(sublist);
+        sublist = new ArrayList<>();
+        while(!s2.isEmpty()) {
+            curr = s2.pop();
+            sublist.add(curr.val);
+            if(curr.right != null)
+                s1.push(curr.right);
+            if(curr.left != null)
+                s1.push(curr.left);
+        }
+        if(!sublist.isEmpty()) 
+            ans.add(sublist);
+   }
+   return ans;
+}
     /* old version // with helper funtion and recursion
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList();
