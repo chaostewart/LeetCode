@@ -4,9 +4,9 @@ class Solution {
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
         for (int coin : coins) 
-            for (int i = 1; i <= amount; i++) 
+            for (int i = coin; i <= amount; i++) 
                 // value of amount is larger than coin value && previously value of (i - coin) had a solution
-                if (coin <= i && dp[i-coin] != Integer.MAX_VALUE)
+                if (dp[i-coin] != Integer.MAX_VALUE)
                     dp[i] = Math.min(dp[i-coin] + 1, dp[i]);
 
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
